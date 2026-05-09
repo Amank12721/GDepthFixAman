@@ -33,6 +33,3 @@ A Blender addon for fixing object depth offset relative to camera with automatic
 
 Aman
 
-## License
-
-MIT License
