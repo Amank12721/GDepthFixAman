@@ -3,7 +3,7 @@ bl_info = {
     "author": "Aman",
     "version": (1, 0, 0),
     "blender": (2, 80, 0),
-    "location": "View3D > Sidebar > GDepthFixAman",
+    "location": "View3D > Sidebar > Tool",
     "description": "Fix object depth offset relative to camera with auto-scaling",
     "category": "3D View",
 }
@@ -71,11 +71,11 @@ class GDepthFixAmanProps(bpy.types.PropertyGroup):
 
 
 class VIEW3D_PT_gdepthfixaman(bpy.types.Panel):
-    bl_label = "GDepthFixAman"
+    bl_label = "Depth Fix"
     bl_idname = "VIEW3D_PT_gdepthfixaman"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "GDepthFixAman"
+    bl_category = "Tool"
 
     def draw(self, context):
         layout = self.layout
