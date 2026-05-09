@@ -24,6 +24,7 @@ A Blender addon for fixing object depth offset relative to camera with automatic
 3. Go to "GDepthFixAman" tab
 4. Use "Depth Offset" slider to move object towards/away from camera
 5. Scale automatically adjusts to maintain visual size
+6. If you manually move the object, click "Set Current as Origin" to update the reference point
 
 ## Requirements
 

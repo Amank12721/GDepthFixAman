@@ -43,6 +43,23 @@ def update_depth(self, context):
         obj.scale = orig_scale * factor
 
 
+class OBJECT_OT_reset_origin(bpy.types.Operator):
+    bl_idname = "object.reset_depth_origin"
+    bl_label = "Set Current as Origin"
+    bl_description = "Set current position as new origin point"
+    
+    def execute(self, context):
+        obj = context.active_object
+        if obj:
+            # Update original position to current position
+            obj["orig_loc"] = obj.location.copy()
+            obj["orig_scale"] = obj.scale.copy()
+            # Reset offset to 0
+            context.scene.gdepthfixaman.depth_offset = 0.0
+            self.report({'INFO'}, "Origin updated to current position")
+        return {'FINISHED'}
+
+
 class GDepthFixAmanProps(bpy.types.PropertyGroup):
     depth_offset: bpy.props.FloatProperty(
         name="Depth Offset",
@@ -66,11 +83,13 @@ class VIEW3D_PT_gdepthfixaman(bpy.types.Panel):
 
         if obj:
             layout.prop(context.scene.gdepthfixaman, "depth_offset")
+            layout.separator()
+            layout.operator("object.reset_depth_origin", icon='PIVOT_CURSOR')
         else:
             layout.label(text="Select an object")
 
 
-classes = [GDepthFixAmanProps, VIEW3D_PT_gdepthfixaman]
+classes = [GDepthFixAmanProps, OBJECT_OT_reset_origin, VIEW3D_PT_gdepthfixaman]
 
 def register():
     for cls in classes:
